@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Schaakbord</title>
+</head>
+<body>
+
+
+<div class="wrapper">
+<div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+</div>
+
+<button id="random">Random</button>
+
+</body>
+
+<style type="text/css">
+
+body{
+margin: 0px;
+}
+
+.wrapper {
+    border: 10px solid #FF7F00;
+    width: 560px;
+    display: grid;
+    grid-gap: 0;
+    grid-template-columns: repeat(8, 70px);
+    grid-template-rows: repeat(8, 70px);
+    grid-auto-flow: row;
+}
+
+
+.box {
+  position: relative!important;
+      background-size: contain!important;
+    background-repeat: no-repeat!important;
+    background-position: center!important;
+        border: 4px solid white;
+}
+
+.box:hover{
+background-color: #2E3699!important;
+border: #2E3699!important;
+}
+
+
+.box:nth-child(-n+8):nth-child(even),.box:nth-child(n+8):nth-child(-n+16):nth-child(odd),.box:nth-child(n+17):nth-child(-n+24):nth-child(even),.box:nth-child(n+25):nth-child(-n+32):nth-child(odd),.box:nth-child(n+33):nth-child(-n+40):nth-child(even),.box:nth-child(n+41):nth-child(-n+48):nth-child(odd),.box:nth-child(n+49):nth-child(-n+56):nth-child(even),.box:nth-child(n+57):nth-child(-n+64):nth-child(odd) {
+        background: #FF7F00;
+    border: 4px solid #FF7F00;
+}
+
+
+
+</style>
+
+</html>
+
+
+<script type="text/javascript">
+
+const pion = "url('images/pion-zwart.png')";
+
+document.getElementById("random").addEventListener("click", function() {
+clear();
+puzzle();
+});
+
+function clear(){
+	 var els = document.getElementsByClassName('box');
+  for(var i = 0; i < els.length; i++){
+    els[i].style.backgroundImage = "none";
+  }
+}
+
+function puzzle(){
+	const random = Math.floor((Math.random() * 3) + 1);
+	console.log("hallo");
+	if (random == 1){
+		document.querySelector(".box:nth-child(51)").style.backgroundImage = pion;
+		document.querySelector(".box:nth-child(52)").style.backgroundImage = pion;
+		document.querySelector(".box:nth-child(53)").style.backgroundImage = pion;
+	}
+	if (random == 2){
+	document.querySelector('.box:nth-child(41)').style.backgroundImage = pion;
+	document.querySelector('.box:nth-child(31)').style.backgroundImage = pion;
+	}
+	if (random == 3){
+		document.querySelector('.box:nth-child(46)').style.backgroundImage = pion;
+		document.querySelector('.box:nth-child(21)').style.backgroundImage = pion;
+	}
+}
+
+
+</script>
