@@ -102,22 +102,82 @@ margin: 0px;
 
 
 .box {
-  position: relative!important;
-      background-size: contain!important;
-    background-repeat: no-repeat!important;
-    background-position: center!important;
+  position: relative;
+      background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
         border: 4px solid white;
 }
 
-.box:hover{
+/*.box:hover{
 background-color: #2E3699!important;
 border: #2E3699!important;
 }
-
+*/
 
 .box:nth-child(-n+8):nth-child(even),.box:nth-child(n+8):nth-child(-n+16):nth-child(odd),.box:nth-child(n+17):nth-child(-n+24):nth-child(even),.box:nth-child(n+25):nth-child(-n+32):nth-child(odd),.box:nth-child(n+33):nth-child(-n+40):nth-child(even),.box:nth-child(n+41):nth-child(-n+48):nth-child(odd),.box:nth-child(n+49):nth-child(-n+56):nth-child(even),.box:nth-child(n+57):nth-child(-n+64):nth-child(odd) {
-        background: #FF7F00;
+        background-color: #FF7F00;
     border: 4px solid #FF7F00;
+}
+
+/*zwarte schaakstukken*/
+.pionz{
+	background-image: url('images/pion-zwart.png');
+}
+
+.koninginz{
+	background-image: url('images/koningin-zwart.png');
+}
+
+.koningz{
+	background-image: url('images/koning-zwart.png');
+}
+
+.torenz{
+	background-image: url('images/toren-zwart.png');
+}
+
+.paardz{
+	background-image: url('images/paard-zwart.png');
+}
+
+.bishopz{
+	background-image: url('images/bishop-zwart.png');
+}
+
+/*witte schaakstuken*/
+.pionw{
+	background-image: url('images/pion-wit.png');
+}
+
+.koninginw{
+	background-image: url('images/koningin-wit.png');
+}
+
+.koningw{
+	background-image: url('images/koning-wit.png');
+}
+
+.torenw{
+	background-image: url('images/toren-wit.png');
+}
+
+.paardw{
+	background-image: url('images/paard-wit.png');
+}
+
+.bishopw{
+	background-image: url('images/bishop-wit.png');
+}
+
+body .correct{
+	background-color: green!important;
+	border-color: green!important;
+}
+
+.wrong{
+	background-color: red!important;
+	border-color: red!important;
 }
 
 
@@ -129,35 +189,84 @@ border: #2E3699!important;
 
 <script type="text/javascript">
 
-const pion = "url('images/pion-zwart.png')";
+
 
 document.getElementById("random").addEventListener("click", function() {
 clear();
+wrong();
 puzzle();
 });
 
 function clear(){
+	 const els = document.getElementsByClassName('box');
+	 for(var i = 0; i < els.length; i++){
+els[i].className = 'box';
+	 }
+}
+
+function wrong(){
 	 var els = document.getElementsByClassName('box');
   for(var i = 0; i < els.length; i++){
-    els[i].style.backgroundImage = "none";
+    els[i].addEventListener("click", function() {
+			this.classList.add("wrong");
+		});
   }
+}
+		
+
+function place(location, piece){
+	document.querySelector(".box:nth-child("+location+")").classList.add(piece);
+}
+
+function remove(location, piece){
+	document.querySelector(".box:nth-child("+location+")").classList.remove(piece);
 }
 
 function puzzle(){
-	const random = Math.floor((Math.random() * 3) + 1);
+	const random = Math.floor((Math.random() * 2) + 1);
 	console.log("hallo");
 	if (random == 1){
-		document.querySelector(".box:nth-child(51)").style.backgroundImage = pion;
-		document.querySelector(".box:nth-child(52)").style.backgroundImage = pion;
-		document.querySelector(".box:nth-child(53)").style.backgroundImage = pion;
+
+		place(1, "torenz");
+		place(3, "bishopz");
+		place(8, "torenz");
+		place(9, "pionz");
+		
+		place(10, "pionz");
+		place(12, "koningz");
+		place(14, "paardw");
+		place(15, "pionz");
+		place(16, "pionz");
+		place(19, "pionz");
+		place(22, "paardz");
+		place(26, "bishopw");
+		place(36, "pionz");
+		place(41, "bishopw");
+		place(42, "paardz");
+		place(49, "pionw");
+		place(54, "pionw");
+		place(55, "pionw");
+		place(56, "pionw");
+		place(61, "torenw");
+		place(63, "koningw");
+		document.querySelector('.box:nth-child(61)').addEventListener("click", function() {
+			this.classList.add("correct");
+			remove(61, "torenw");
+			place(13, "torenw");
+		});
+
+
 	}
 	if (random == 2){
-	document.querySelector('.box:nth-child(41)').style.backgroundImage = pion;
-	document.querySelector('.box:nth-child(31)').style.backgroundImage = pion;
+	place(8, "torenw");
+	place(9, "torenz");
+	place(10, "torenz");
+	place(11, "torenz");
+		place(20, "bishopz");
 	}
 	if (random == 3){
-		document.querySelector('.box:nth-child(46)').style.backgroundImage = pion;
-		document.querySelector('.box:nth-child(21)').style.backgroundImage = pion;
+		// document.querySelector('.box:nth-child(46)').style.backgroundImage = pionz;
+		// document.querySelector('.box:nth-child(21)').style.backgroundImage = pionz;
 	}
 }
 
